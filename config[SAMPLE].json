@@ -14,5 +14,11 @@
     "October",
     "November",
     "Dezember"
-  ]
+  ],
+  "specialDaysLabels": {
+    "holidays": "Holidays:",
+    "birthdays": "Birthdays:",
+    "others": "Others:"
+  }
+  
 }

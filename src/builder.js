@@ -328,30 +328,30 @@ const getListStartY = (previousLists, baseY, distance) => {
   return y;
 }
 
-const createSpecialDaysList = (list) => {
+const createSpecialDaysList = (list, labels) => {
   const distance = 14;
   const baseX = 1011;
   const baseY = 182;
   const g = createSVGNode("g");
   if (list.holidays && Object.values(list.holidays).length > 0) {
-    g.append(createList("Feriados:", list.holidays, baseX, baseY, distance));
+    g.append(createList(labels.holidays, list.holidays, baseX, baseY, distance));
   }
   if (list.birthdays && Object.values(list.birthdays).length > 0) {
     const birthdayY = getListStartY([list.holidays], baseY, distance)
-    g.append(createList("Aniversários:", list.birthdays, baseX, birthdayY, distance));
+    g.append(createList(labels.birthdays, list.birthdays, baseX, birthdayY, distance));
   }
   if (list.others && Object.values(list.others).length > 0) {
     const othersY = getListStartY([list.holidays, list.birthdays], baseY, distance)
-    g.append(createList("Outros:", list.others, baseX, othersY, distance));
+    g.append(createList(labels.others, list.others, baseX, othersY, distance));
   }
   return g;
 }
 
 module.exports = {
-  createCalendar: (days, specialDays, month, year) => {    
+  createCalendar: (days, specialDays, specialDaysLabels, month, year) => {    
     const base = createCalendarBase(month, year);
     base.append(createCalendarDays(days));
-    base.append(createSpecialDaysList(specialDays));
+    base.append(createSpecialDaysList(specialDays, specialDaysLabels));
     return base;
   }
 };
