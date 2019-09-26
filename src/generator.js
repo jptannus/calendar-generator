@@ -23,6 +23,14 @@ const generateDayTags = (monthDay, specialDays) => {
   return specialDays.birthdays[monthDay] ? ["birthday"] : undefined;
 }
 
+const generateDayObject = (weekDay, monthDay, specialDays) => {
+  return {
+    label: makeItDoubleDigit(monthDay),
+    type: generateDayType(weekDay, monthDay, specialDays),
+    tags: generateDayTags(monthDay, specialDays)
+  }
+}
+
 const addCurrentMonthDays = (days, lastMonthDay, specialDays) => {
   let monthDay = 0;
   for(let i = 0;  i < 5; i++) {
@@ -31,13 +39,19 @@ const addCurrentMonthDays = (days, lastMonthDay, specialDays) => {
     for(let j = week.length;  j < 7; j++) {
       monthDay++;
       if (monthDay > lastMonthDay) break;
-      week.push({
-        label: makeItDoubleDigit(monthDay),
-        type: generateDayType(j, monthDay, specialDays),
-        tags: generateDayTags(monthDay, specialDays)
-      })
+      week.push(generateDayObject(j, monthDay, specialDays))
     }
     if (!days[i]) days.push(week);
+  }
+
+  // The days didn't fit 5 rows
+  if (monthDay < lastMonthDay) {
+    const extraDays = lastMonthDay - monthDay;
+    for(let i = 0; i < extraDays; i++) {
+      monthDay++;
+      days[4][i].doubleDay = true;
+      days[4][i].otherDay = generateDayObject(i, monthDay, specialDays);
+    }
   }
 }
 
@@ -54,12 +68,16 @@ const addNextMonthDays = (lastDay, week) => {
 
 module.exports = {
   generateDays: (moment, month, year, specialDays) => {
-    const lastDay = 31;
-    const firstDay = moment(""+year+month+"01");
+    const daysInMonth = moment().month(month - 1).daysInMonth();
+    const firstDay = moment("" + year + makeItDoubleDigit(month) + "01").day();
     const days = [[]];
-    addPreviousMonthDays(firstDay.day(), days[0], moment().month(month - 2).daysInMonth());
-    addCurrentMonthDays(days, lastDay, specialDays[month]);
-    addNextMonthDays(moment("" + year + month + lastDay).day(), days[days.length - 1]);
+    const previousMonth = month > 1 ? month - 2 : 11;
+
+    addPreviousMonthDays(firstDay, days[0], moment().month(previousMonth).daysInMonth());
+    addCurrentMonthDays(days, daysInMonth, specialDays[month]);
+    if ((firstDay + daysInMonth) / 7 <= 5) {
+      addNextMonthDays(moment("" + year + makeItDoubleDigit(month) + daysInMonth).day(), days[days.length - 1]);
+    }
     return days;
   }
 }
