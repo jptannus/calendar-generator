@@ -17,9 +17,10 @@ const createMonthHeader = (month) => {
   rect.setAttribute("height", 100)
   rect.setAttribute("fill", "#D0D0D0");
   const text = document.createElementNS(svgNS, "text");
+  addBaseForText(text)
   text.setAttribute("font-size", 72);
   text.setAttribute("fill", "white");
-  addBaseForText(text)
+  text.setAttribute("font-family", "Roboto-Medium");
   const tspan = document.createElementNS(svgNS, "tspan");
   tspan.setAttribute("x", 54);
   tspan.setAttribute("y", 133.609);
@@ -92,9 +93,10 @@ const createYearHeader = (year) => {
   rect.setAttribute("stroke", "#D0D0D0");
   rect.setAttribute("stroke-width", 2);
   const text = document.createElementNS(svgNS, "text");
+  addBaseForText(text);
   text.setAttribute("font-size", 48);
   text.setAttribute("fill", "#6C6A6A");
-  addBaseForText(text);
+  text.setAttribute("font-family", "Roboto-Medium");
   const tspan = document.createElementNS(svgNS, "tspan");
   tspan.setAttribute("x", 1070.44);
   tspan.setAttribute("y", 125.406);
@@ -186,9 +188,10 @@ const createDayOtherMonth = (label, x, y) => {
   rect.setAttribute("x", x);
   rect.setAttribute("y", y);
   const text = document.createElementNS(svgNS, "text");
+  addBaseForText(text);
   text.setAttribute("font-size", 36);
   text.setAttribute("fill", "#EFEFEF");
-  addBaseForText(text);
+  text.setAttribute("font-family", "Roboto-Medium");
   const tspan = document.createElementNS(svgNS, "tspan");
   tspan.setAttribute("x", x + 46);
   tspan.setAttribute("y", y + 79);
@@ -264,7 +267,7 @@ const createListHeader = (label, x, y) => {
   addBaseForText(text);
   text.setAttribute("font-size", 12);
   text.setAttribute("fill", "#606060");
-  text.setAttribute("font-weight", "bold");
+  text.setAttribute("font-family", "Roboto-Bold");
   const tspan = document.createElementNS(svgNS, "tspan");
   tspan.setAttribute("x", x);
   tspan.setAttribute("y", y);
