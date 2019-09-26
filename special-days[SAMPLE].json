@@ -1,0 +1,70 @@
+{
+  "1": {
+    "holidays": {
+      "1": "New Year"
+    },
+    "birthdays": {},
+    "others": {}
+  },
+  "2": {
+    "holidays": {},
+    "birthdays": {},
+    "others": {}
+  },
+  "3": {
+    "holidays": {},
+    "birthdays": {},
+    "others": {}
+  },
+  "4": {
+    "holidays": {},
+    "birthdays": {},
+    "others": {
+      "1": "April Fools"
+    }
+  },
+  "5": {
+    "holidays": {},
+    "birthdays": {},
+    "others": {}
+  },
+  "6": {
+    "holidays": {},
+    "birthdays": {},
+    "others": {}
+  },
+  "7": {
+    "holidays": {},
+    "birthdays": {},
+    "others": {}
+  },
+  "8": {
+    "holidays": {},
+    "birthdays": {},
+    "others": {}
+  },
+  "9": {
+    "holidays": {},
+    "birthdays": {},
+    "others": {}
+  },
+  "10": {
+    "holidays": {},
+    "birthdays": {},
+    "others": {}
+  },
+  "11": {
+    "holidays": {},
+    "birthdays": {},
+    "others": {
+      "29": "Black Friday"
+    }
+  },
+  "12": {
+    "holidays": {
+      "25": "Christmas"
+    },
+    "birthdays": {},
+    "others": {}
+  }
+}
